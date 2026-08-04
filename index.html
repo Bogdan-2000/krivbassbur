@@ -612,10 +612,27 @@
         .section-title h2 {
           font-size: 2rem;
         }
+
+        /* --- НОВІ СТИЛІ ДЛЯ ТАБЛИЦІ ЦІН ТА КНОПОК --- */
+        .price-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+        .price-value {
+          white-space: nowrap; /* Забороняє перенесення тексту ціни */
+        }
+        .pricing {
+          padding-bottom: 120px; /* Відступ знизу, щоб плаваючі кнопки не закривали ціни */
+        }
         .fab-container {
           bottom: 20px;
           right: 20px;
+          transform: scale(0.85); /* Трохи зменшуємо кнопки на телефоні */
+          transform-origin: bottom right;
         }
+        /* ------------------------------------------ */
+
         .fab {
           width: 50px;
           height: 50px;
@@ -967,20 +984,19 @@
 
     <div class="fab-container">
       <a
-        href="https://t.me/твій_телеграм"
-        target="_blank"
-        class="fab fab-tg"
+        href="tg://resolve?domain=dmitrosolovev"
+        class="fab-tg fab"
         title="Telegram"
         ><i class="fa-brands fa-telegram"></i
       ></a>
       <a
-        href="viber://chat?number=%2B380991234567"
+        href="viber://chat?number=%2B380672741623"
         target="_blank"
         class="fab fab-vb"
         title="Viber"
         ><i class="fa-brands fa-viber"></i
       ></a>
-      <a href="tel:+380991234567" class="fab fab-call" title="Зателефонувати"
+      <a href="tel:+380672741623" class="fab fab-call" title="Зателефонувати"
         ><i class="fa-solid fa-phone"></i
       ></a>
     </div>
