@@ -638,6 +638,16 @@
           height: 50px;
           font-size: 1.5rem;
         }
+        .input-group input,
+        .input-group textarea {
+          padding: 12px 15px;
+          font-size: 0.9rem;
+        }
+
+        .file-label {
+          padding: 12px 15px;
+          font-size: 0.85rem;
+        }
       }
     </style>
   </head>
@@ -939,19 +949,14 @@
               <input type="text" id="name" placeholder="Ваше ім'я" required />
             </div>
             <div class="input-group">
-              <input
-                type="tel"
-                id="phone"
-                placeholder="Ваш телефон (напр. 099 123 4567)"
-                required
-              />
+              <input type="tel" id="phone" placeholder="Ваш телефон" required />
             </div>
 
             <!-- Нове текстове поле для опису задачі -->
             <div class="input-group">
               <textarea
                 id="message"
-                placeholder="Опишіть, що потрібно зробити (наприклад: отвір під витяжку в бетоні, товщина стіни 30 см)..."
+                placeholder="Опишіть, що потрібно зробити"
                 rows="3"
               ></textarea>
             </div>
