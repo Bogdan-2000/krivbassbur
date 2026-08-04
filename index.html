@@ -1,0 +1,1123 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Преміум Демонтаж та Алмазне Буріння | Кривий Ріг</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --primary: #ff6b00;
+        --primary-hover: #e65c00;
+        --dark: #0a0a0a;
+        --dark-light: #1a1a1a;
+        --text: #e0e0e0;
+        --white: #ffffff;
+        --gray: #888888;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: var(--dark);
+        color: var(--text);
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      /* Стилі для поля завантаження файлу */
+      .file-group {
+        position: relative;
+        text-align: left;
+      }
+      .file-group input[type="file"] {
+        display: none; /* Ховаємо стандартну страшну кнопку */
+      }
+      .file-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 20px;
+        background: rgba(255, 107, 0, 0.1);
+        border: 1px dashed var(--primary);
+        border-radius: 6px;
+        color: var(--primary);
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 0.95rem;
+      }
+      .file-label:hover {
+        background: rgba(255, 107, 0, 0.2);
+      }
+      .file-label.has-file {
+        background: rgba(76, 175, 80, 0.2);
+        border-color: #4caf50;
+        color: #4caf50;
+      }
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Навігація */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 20px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        transition: 0.3s;
+      }
+      header.scrolled {
+        background: rgba(10, 10, 10, 0.95);
+        padding: 10px 5%;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: var(--white);
+        text-transform: uppercase;
+      }
+      .logo span {
+        color: var(--primary);
+      }
+      .nav-links {
+        display: flex;
+        gap: 20px;
+      }
+      .nav-links a {
+        font-weight: 600;
+        font-size: 1rem;
+        transition: color 0.3s;
+        display: none;
+      }
+      .nav-contacts a {
+        font-weight: 600;
+        font-size: 1.2rem;
+        transition: 0.3s;
+      }
+      .nav-contacts a:hover,
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      /* Головний екран з ВІДЕО */
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 0 5%;
+        overflow: hidden;
+      }
+      .hero-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        object-fit: cover;
+        object-position: center 20%;
+      }
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          rgba(10, 10, 10, 0.9) 0%,
+          rgba(10, 10, 10, 0.6) 100%
+        );
+        z-index: -1;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        z-index: 1;
+      }
+      .badge {
+        display: inline-block;
+        background: rgba(255, 107, 0, 0.2);
+        color: var(--primary);
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        border: 1px solid rgba(255, 107, 0, 0.5);
+      }
+      .hero h1 {
+        font-size: 4rem;
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 20px;
+        color: var(--white);
+        text-transform: uppercase;
+      }
+      .hero h1 span {
+        color: var(--primary);
+      }
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        color: #ccc;
+        max-width: 700px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--primary);
+        color: var(--white);
+        padding: 18px 40px;
+        font-size: 1.1rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        border-radius: 4px;
+        transition: 0.3s;
+        cursor: pointer;
+        border: none;
+      }
+      .btn:hover {
+        background: var(--primary-hover);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(255, 107, 0, 0.3);
+      }
+
+      /* Заголовки секцій */
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .section-title h2 {
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: var(--white);
+        text-transform: uppercase;
+      }
+      .section-title span {
+        color: var(--primary);
+      }
+      .section-title p {
+        color: var(--gray);
+        margin-top: 10px;
+        font-size: 1.1rem;
+      }
+
+      /* Послуги */
+      .services {
+        padding: 100px 5%;
+        background: var(--dark-light);
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .service-card {
+        background: var(--dark);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 40px 30px;
+        transition: 0.3s;
+        text-align: center;
+      }
+      .service-card:hover {
+        border-color: var(--primary);
+        transform: translateY(-10px);
+      }
+      .service-icon {
+        font-size: 3rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+      }
+      .service-card h3 {
+        color: var(--white);
+        margin-bottom: 15px;
+        font-size: 1.4rem;
+      }
+      .service-card p {
+        color: var(--gray);
+        font-size: 0.95rem;
+      }
+
+      /* Як ми працюємо */
+      .steps-section {
+        padding: 80px 5%;
+        background: var(--dark);
+      }
+      .steps-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+        counter-reset: step-counter;
+      }
+      .step-card {
+        flex: 1;
+        min-width: 250px;
+        background: var(--dark-light);
+        padding: 30px;
+        border-radius: 8px;
+        position: relative;
+        text-align: center;
+      }
+      .step-card::before {
+        counter-increment: step-counter;
+        content: "0" counter(step-counter);
+        position: absolute;
+        top: -15px;
+        left: 30px;
+        font-size: 3rem;
+        font-weight: 900;
+        color: rgba(255, 107, 0, 0.1);
+        line-height: 1;
+      }
+      .step-card i {
+        font-size: 2rem;
+        color: var(--primary);
+        margin-bottom: 15px;
+      }
+      .step-card h4 {
+        color: var(--white);
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+      .step-card p {
+        color: var(--gray);
+        font-size: 0.9rem;
+      }
+
+      /* Портфоліо (Галерея) */
+      .portfolio {
+        padding: 100px 5%;
+        background: var(--dark-light);
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 15px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .gallery-item {
+        height: 300px;
+        overflow: hidden;
+        border-radius: 8px;
+        position: relative;
+        /* Жорстко обрізаємо кути при анімації (фікс для Safari/Chrome) */
+        transform: translateZ(0);
+        -webkit-mask-image: -webkit-radial-gradient(white, black);
+      }
+
+      .gallery-item img,
+      .gallery-item video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition:
+          transform 0.5s ease,
+          filter 0.5s ease;
+        filter: grayscale(20%);
+        display: block; /* Прибираємо зайві відступи у відео */
+      }
+
+      .gallery-item:hover img,
+      .gallery-item:hover video {
+        transform: scale(1.1);
+        filter: grayscale(0%);
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(255, 107, 0, 0.8),
+          transparent
+        );
+        opacity: 0;
+        transition: 0.3s;
+        display: flex;
+        align-items: flex-end;
+        padding: 20px;
+        z-index: 10; /* Примусово тримаємо текст з градієнтом поверх відео */
+        pointer-events: none; /* Щоб плашка не заважала мишці бачити наведення */
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+      .gallery-overlay span {
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      /* Ціни */
+      .pricing {
+        padding: 100px 5%;
+        background: var(--dark);
+      }
+      .price-table {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: var(--dark-light);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .price-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 30px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        align-items: center;
+        transition: 0.3s;
+      }
+      .price-row:hover {
+        background: rgba(255, 107, 0, 0.05);
+      }
+      .price-row:last-child {
+        border-bottom: none;
+      }
+      .service-name {
+        font-weight: 600;
+        color: var(--white);
+        font-size: 1.1rem;
+      }
+      .price-value {
+        color: var(--primary);
+        font-weight: 900;
+        font-size: 1.2rem;
+      }
+
+      /* FAQ (Акордеон) */
+      .faq {
+        padding: 100px 5%;
+        background: var(--dark-light);
+      }
+      .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      details {
+        background: var(--dark);
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      summary {
+        padding: 20px;
+        font-weight: 600;
+        color: var(--white);
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.1rem;
+      }
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      summary::after {
+        content: "+";
+        color: var(--primary);
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+      details[open] summary::after {
+        content: "−";
+      }
+      .faq-content {
+        padding: 0 20px 20px;
+        color: var(--gray);
+        line-height: 1.7;
+      }
+
+      /* Форма / CTA */
+      .cta-section {
+        padding: 100px 5%;
+        background:
+          linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)),
+          url("https://images.unsplash.com/photo-1504307651254-35680f356f27?q=80")
+            center/fixed;
+        display: flex;
+        justify-content: center;
+      }
+      .form-wrapper {
+        background: rgba(26, 26, 26, 0.85);
+        backdrop-filter: blur(20px);
+        padding: 50px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 107, 0, 0.3);
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+      .form-wrapper h3 {
+        font-size: 2rem;
+        color: var(--white);
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      .form-wrapper p {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #aaa;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+      }
+      .input-group input {
+        width: 100%;
+        padding: 15px 20px;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        color: var(--white);
+        font-size: 1rem;
+      }
+      .input-group input:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
+      .btn-submit {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* Плаваючі кнопки */
+      .fab-container {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 1000;
+      }
+      .fab {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        color: white;
+        transition: 0.3s;
+      }
+      .fab:hover {
+        transform: scale(1.1);
+      }
+      .fab-tg {
+        background: #0088cc;
+      }
+      .fab-vb {
+        background: #7360f2;
+      }
+      .fab-call {
+        background: #4caf50;
+        animation: pulse 2s infinite;
+      }
+      .input-group textarea {
+        width: 100%;
+        padding: 15px 20px;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        color: var(--white);
+        font-size: 1rem;
+        font-family: "Montserrat", sans-serif;
+        resize: vertical;
+      }
+      .input-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 15px rgba(0, 0, 0, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        }
+      }
+
+      footer {
+        text-align: center;
+        padding: 30px;
+        background: #050505;
+        color: #555;
+      }
+
+      @media (min-width: 769px) {
+        .nav-links a {
+          display: inline-block;
+        }
+      }
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+        .nav-contacts {
+          display: none;
+        }
+        .section-title h2 {
+          font-size: 2rem;
+        }
+        .fab-container {
+          bottom: 20px;
+          right: 20px;
+        }
+        .fab {
+          width: 50px;
+          height: 50px;
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="header">
+      <div class="logo">Krivbass<span>Бур</span></div>
+      <div class="nav-links">
+        <a href="#services">Послуги</a>
+        <a href="#portfolio">Галерея</a>
+        <a href="#pricing">Ціни</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-contacts">
+        <a href="tel:+380672741623"
+          ><i class="fa-solid fa-phone"></i> +38 (067) 274-16-23</a
+        >
+      </div>
+    </header>
+
+    <main>
+      <!-- Головний екран (З ВІДЕО) -->
+      <section class="hero">
+        <!-- Шлях до відео змінено на img/ -->
+        <video autoplay loop muted playsinline class="hero-video">
+          <source src="img/video_2026-08-05_00-50-45.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content fade-in">
+          <div class="badge">
+            <i class="fa-solid fa-location-dot"></i> Працюємо по Кривому Рогу та
+            району
+          </div>
+          <h1>Ювелірна точність <br />та потужний <span>демонтаж</span></h1>
+          <p>
+            Великий парк власного інструменту: від ручних і станинних алмазних
+            бурів до дискових стенорізів та потужних відбійних молотків.
+            Виконуємо завдання будь-якої складності, підбираючи оптимальний
+            метод для вашого об'єкту.
+          </p>
+          <div>
+            <a href="#order" class="btn"
+              >Розрахувати вартість <i class="fa-solid fa-calculator"></i
+            ></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Послуги (Оновлено описи інструменту) -->
+      <section id="services" class="services">
+        <div class="section-title fade-in">
+          <h2>Наші <span>послуги</span></h2>
+          <p>
+            Підбираємо інструмент під конкретну задачу для максимальної
+            ефективності
+          </p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card fade-in">
+            <i class="fa-solid fa-compact-disc service-icon"></i>
+            <h3>Алмазне буріння</h3>
+            <p>
+              Працюємо як потужними станинними установками, так і ручними бурами
+              для важкодоступних місць. Ідеально рівні отвори з водяним
+              охолодженням.
+            </p>
+          </div>
+          <div class="service-card fade-in" style="transition-delay: 0.2s">
+            <i class="fa-solid fa-door-open service-icon"></i>
+            <h3>Дискове різання прорізів</h3>
+            <p>
+              Використовуємо професійні дискові стенорізи та метод строчечного
+              буріння для вирізання дверних та віконних прорізів у товстому
+              залізобетоні.
+            </p>
+          </div>
+          <div class="service-card fade-in" style="transition-delay: 0.4s">
+            <i class="fa-solid fa-hammer service-icon"></i>
+            <h3>Силовий демонтаж</h3>
+            <p>
+              Там, де потрібна швидкість і груба сила — беремо в руки відбійні
+              молотки та інший ударний інструмент. Швидко зносимо стяжки та
+              перегородки.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Як ми працюємо -->
+      <section class="steps-section">
+        <div class="section-title fade-in">
+          <h2>Як ми <span>працюємо</span></h2>
+        </div>
+        <div class="steps-container">
+          <div class="step-card fade-in">
+            <i class="fa-solid fa-phone-volume"></i>
+            <h4>Дзвінок та консультація</h4>
+            <p>
+              Ви телефонуєте або залишаєте заявку. Ми обговорюємо задачу та
+              орієнтуємо по ціні.
+            </p>
+          </div>
+          <div class="step-card fade-in" style="transition-delay: 0.1s">
+            <i class="fa-solid fa-ruler-combined"></i>
+            <h4>Оцінка на об'єкті</h4>
+            <p>
+              При складних задачах виїжджаємо на місце для точних замірів та
+              підбору необхідного інструменту.
+            </p>
+          </div>
+          <div class="step-card fade-in" style="transition-delay: 0.2s">
+            <i class="fa-solid fa-person-digging"></i>
+            <h4>Виконання робіт</h4>
+            <p>
+              Приїжджаємо зі своїм обладнанням і виконуємо роботу з дотриманням
+              технології.
+            </p>
+          </div>
+          <div class="step-card fade-in" style="transition-delay: 0.3s">
+            <i class="fa-solid fa-handshake"></i>
+            <h4>Здача об'єкта</h4>
+            <p>
+              Ви оцінюєте результат, точність отворів та виконаний демонтаж,
+              після чого проводите оплату.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Портфоліо (Шляхи змінено на img/) -->
+      <section id="portfolio" class="portfolio">
+        <div class="section-title fade-in">
+          <h2>Наші <span>роботи</span></h2>
+          <p>
+            Реальні фото з наших об'єктів. Працюємо з товстим армованим
+            монолітом.
+          </p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item fade-in">
+            <img
+              src="img/photo_18_2026-08-05_00-50-45.jpg"
+              alt="Строчечне буріння"
+            />
+            <div class="gallery-overlay"><span>Строчечне буріння</span></div>
+          </div>
+          <div class="gallery-item fade-in">
+            <video autoplay loop muted playsinline>
+              <source
+                src="img/video_2026-08-05_01-19-13.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div class="gallery-overlay"><span>Вікно в Європу 😎</span></div>
+          </div>
+          <div class="gallery-item fade-in">
+            <img
+              src="img/photo_8_2026-08-05_00-50-20.jpg"
+              alt="Готовий проріз"
+            />
+            <div class="gallery-overlay"><span>Готовий проріз</span></div>
+          </div>
+          <div class="gallery-item fade-in">
+            <img
+              src="img/photo_11_2026-08-05_00-50-45.jpg"
+              alt="Процес роботи"
+            />
+            <div class="gallery-overlay"><span>Робочий процес</span></div>
+          </div>
+          <div class="gallery-item fade-in">
+            <img
+              src="img/photo_5_2026-08-05_00-50-11.jpg"
+              alt="Демонтаж блоку"
+            />
+            <div class="gallery-overlay"><span>Витягнення блоку</span></div>
+          </div>
+          <div class="gallery-item fade-in">
+            <img
+              src="img/photo_2_2026-08-05_00-50-20.jpg"
+              alt="Ідеальна точність"
+            />
+            <div class="gallery-overlay"><span>Ідеальна точність</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Орієнтовні ціни -->
+      <section id="pricing" class="pricing">
+        <div class="section-title fade-in">
+          <h2>Орієнтовні <span>ціни</span></h2>
+          <p>
+            Точна вартість залежить від матеріалу (цегла, залізобетон) та
+            складності доступу.
+          </p>
+        </div>
+        <div class="price-table fade-in">
+          <div class="price-row">
+            <span class="service-name"
+              >Алмазне буріння (отвори під комунікації)</span
+            >
+            <span class="price-value">від 15 грн / 1 см</span>
+          </div>
+          <div class="price-row">
+            <span class="service-name"
+              >Вирізання дверного прорізу (стандарт)</span
+            >
+            <span class="price-value">від 3000 грн</span>
+          </div>
+          <div class="price-row">
+            <span class="service-name">Вирізання віконного прорізу</span>
+            <span class="price-value">від 2500 грн</span>
+          </div>
+          <div class="price-row">
+            <span class="service-name"
+              >Демонтаж міжкімнатних перегородок (півцегли)</span
+            >
+            <span class="price-value">від 150 грн / м²</span>
+          </div>
+          <div class="price-row">
+            <span class="service-name">Демонтаж стяжки підлоги</span>
+            <span class="price-value">від 100 грн / м²</span>
+          </div>
+          <div class="price-row">
+            <span class="service-name"
+              >Мінімальний виїзд майстра з обладнанням</span
+            >
+            <span class="price-value">800 грн</span>
+          </div>
+        </div>
+        <p
+          style="
+            text-align: center;
+            color: var(--gray);
+            margin-top: 20px;
+            font-size: 0.9rem;
+          "
+        >
+          * Ціни вказані для ознайомлення. Зателефонуйте нам для точного
+          прорахунку вашого об'єкту.
+        </p>
+      </section>
+
+      <!-- FAQ (Відредаговано про відбійники) -->
+      <section id="faq" class="faq">
+        <div class="section-title fade-in">
+          <h2>Часті <span>запитання</span></h2>
+        </div>
+        <div class="faq-container fade-in">
+          <details>
+            <summary>Чи буде багато пилу під час буріння?</summary>
+            <div class="faq-content">
+              Сухого пилу в повітрі не буде взагалі. Ми використовуємо
+              технологію вологого алмазного буріння з постійною подачею води на
+              коронку. Вода повністю зв'язує пил, що робить процес безпечним для
+              дихання і не забруднює повітря.
+            </div>
+          </details>
+          <details>
+            <summary>Чи буде на підлозі вода від установки?</summary>
+            <div class="faq-content">
+              Так. Вода подається для охолодження коронки та вимивання
+              відпрацьованого бетону, тому в процесі буріння вона вільно стікає
+              по стіні на підлогу. На об'єкті буде робоча волога — це стандартна
+              і єдина правильна технологія для проходження міцного залізобетону.
+            </div>
+          </details>
+          <details>
+            <summary>Чи безпечно різати несучу стіну?</summary>
+            <div class="faq-content">
+              Абсолютно, але тільки правильним інструментом. Для несучих
+              конструкцій ми застосовуємо виключно алмазні дискові стенорізи або
+              буріння — вони працюють без вібрацій і не дають мікротріщин. А от
+              відбійні молотки ми застосовуємо тільки там, де це безпечно
+              (наприклад, зняття стяжки чи знесення ненесучих перегородок).
+            </div>
+          </details>
+          <details>
+            <summary>Що робити, якщо в стіні товста арматура?</summary>
+            <div class="faq-content">
+              Для нашого обладнання це не проблема. Алмазні коронки та диски
+              легко і рівно перерізають арматуру будь-якого діаметру в процесі
+              проходження бетону.
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Форма -->
+      <section id="order" class="cta-section">
+        <div class="form-wrapper fade-in">
+          <h3>Оцінимо роботу по фото та опису</h3>
+          <p>
+            Залиште контакти, коротко опишіть задачу або прикріпте фото/відео
+            стіни — ми передзвонимо та зорієнтуємо по ціні.
+          </p>
+
+          <form id="tg-form">
+            <div class="input-group">
+              <input type="text" id="name" placeholder="Ваше ім'я" required />
+            </div>
+            <div class="input-group">
+              <input
+                type="tel"
+                id="phone"
+                placeholder="Ваш телефон (напр. 099 123 4567)"
+                required
+              />
+            </div>
+
+            <!-- Нове текстове поле для опису задачі -->
+            <div class="input-group">
+              <textarea
+                id="message"
+                placeholder="Опишіть, що потрібно зробити (наприклад: отвір під витяжку в бетоні, товщина стіни 30 см)..."
+                rows="3"
+              ></textarea>
+            </div>
+
+            <!-- Поле для файлу -->
+            <div class="input-group file-group">
+              <label for="file-upload" class="file-label">
+                <i class="fa-solid fa-paperclip"></i>
+                <span>Прикріпити фото або відео (до 50 МБ)</span>
+              </label>
+              <input type="file" id="file-upload" accept="image/*,video/*" />
+            </div>
+
+            <button type="submit" class="btn btn-submit" id="submit-btn">
+              Відправити заявку <i class="fa-solid fa-paper-plane"></i>
+            </button>
+            <div
+              id="form-msg"
+              style="
+                margin-top: 15px;
+                text-align: center;
+                font-weight: bold;
+                display: none;
+              "
+            ></div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <div class="fab-container">
+      <a
+        href="https://t.me/твій_телеграм"
+        target="_blank"
+        class="fab fab-tg"
+        title="Telegram"
+        ><i class="fa-brands fa-telegram"></i
+      ></a>
+      <a
+        href="viber://chat?number=%2B380991234567"
+        target="_blank"
+        class="fab fab-vb"
+        title="Viber"
+        ><i class="fa-brands fa-viber"></i
+      ></a>
+      <a href="tel:+380991234567" class="fab fab-call" title="Зателефонувати"
+        ><i class="fa-solid fa-phone"></i
+      ></a>
+    </div>
+
+    <footer>
+      <p>
+        © 2026 KrivbassБур — Професійне алмазне буріння та демонтаж у Кривому
+        Розі.
+      </p>
+    </footer>
+
+    <script>
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          document.getElementById("header").classList.add("scrolled");
+        } else {
+          document.getElementById("header").classList.remove("scrolled");
+        }
+      });
+
+      const observerOptions = { threshold: 0.1 };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+      document
+        .querySelectorAll(".fade-in")
+        .forEach((el) => observer.observe(el));
+
+      // Зміна тексту на кнопці при виборі файлу
+      document
+        .getElementById("file-upload")
+        .addEventListener("change", function () {
+          const label = document.querySelector(".file-label");
+          const labelText = document.querySelector(".file-label span");
+          if (this.files && this.files.length > 0) {
+            labelText.textContent = "Файл прикріплено: " + this.files[0].name;
+            label.classList.add("has-file");
+          } else {
+            labelText.textContent = "Прикріпити фото або відео (до 50 МБ)";
+            label.classList.remove("has-file");
+          }
+        });
+
+      document
+        .getElementById("tg-form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const BOT_TOKEN = "8858253820:AAGicWPT-eDHY9-Gf23OjDwc9_aWqPlpmao";
+          const CHAT_ID = "900891446";
+
+          const name = document.getElementById("name").value;
+          const phone = document.getElementById("phone").value;
+          const userMessage = document.getElementById("message").value;
+          const fileInput = document.getElementById("file-upload");
+          const btn = document.getElementById("submit-btn");
+          const msgBox = document.getElementById("form-msg");
+          const label = document.querySelector(".file-label");
+          const labelText = document.querySelector(".file-label span");
+
+          // Формуємо красивий текст повідомлення з урахуванням опису
+          let text = `🔥 Нова заявка з сайту!\n\n👤 Ім'я: ${name}\n📞 Телефон: ${phone}`;
+          if (userMessage.trim() !== "") {
+            text += `\n\n💬 Задача:\n${userMessage}`;
+          }
+
+          btn.innerHTML =
+            '<i class="fa-solid fa-spinner fa-spin"></i> Відправка...';
+          btn.style.opacity = "0.7";
+          btn.disabled = true;
+
+          try {
+            let response;
+
+            if (fileInput.files.length > 0) {
+              const file = fileInput.files[0];
+
+              if (file.size > 52428800) {
+                throw new Error("Файл занадто великий. Максимум 50 МБ.");
+              }
+
+              const formData = new FormData();
+              formData.append("chat_id", CHAT_ID);
+              formData.append("caption", text);
+              formData.append("document", file);
+
+              response = await fetch(
+                `https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`,
+                {
+                  method: "POST",
+                  body: formData,
+                },
+              );
+            } else {
+              response = await fetch(
+                `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ chat_id: CHAT_ID, text: text }),
+                },
+              );
+            }
+
+            if (response.ok) {
+              msgBox.style.display = "block";
+              msgBox.style.color = "#4CAF50";
+              msgBox.innerHTML =
+                '<i class="fa-solid fa-check-circle"></i> Заявку успішно відправлено!';
+              document.getElementById("tg-form").reset();
+              labelText.textContent = "Прикріпити фото або відео (до 50 МБ)";
+              label.classList.remove("has-file");
+            } else {
+              throw new Error("Помилка сервера Telegram");
+            }
+          } catch (error) {
+            msgBox.style.display = "block";
+            msgBox.style.color = "#FF5252";
+            if (error.message.includes("великий")) {
+              msgBox.innerHTML =
+                "Файл завеликий 😔 Відправте його нам у Telegram напряму.";
+            } else {
+              msgBox.innerHTML =
+                "Сталася помилка. Будь ласка, напишіть нам у месенджер.";
+            }
+          } finally {
+            btn.innerHTML =
+              'Відправити заявку <i class="fa-solid fa-paper-plane"></i>';
+            btn.style.opacity = "1";
+            btn.disabled = false;
+            setTimeout(() => (msgBox.style.display = "none"), 7000);
+          }
+        });
+    </script>
+  </body>
+</html>
