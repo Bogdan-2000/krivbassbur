@@ -634,6 +634,16 @@
         }
       }
       @media (max-width: 768px) {
+        .hero-video {
+          display: none; /* Видео полностью выключается на телефонах, экономя трафик */
+        }
+        .hero {
+          background: linear-gradient(
+            135deg,
+            #1a1a1a 0%,
+            #0a0a0a 100%
+          ); /* Красивый темный фон вместо видео */
+        }
         .hero h1 {
           font-size: 2.2rem;
         }
